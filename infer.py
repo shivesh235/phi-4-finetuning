@@ -16,7 +16,7 @@ processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
     model_path, 
     device_map="cuda", 
-    torch_dtype="auto", 
+    torch_dtype=torch.bfloat16, 
     trust_remote_code=True,
     # if you do not use Ampere or later GPUs, change attention to "eager"
     _attn_implementation='flash_attention_2',
@@ -37,7 +37,7 @@ prompt = f'{user_prompt}<|image_1|>Does the picture contain spleen? answer in ye
 print(f'>>> Prompt\n{prompt}')
 
 # Download and open image
-image = Image.open('source.jpg') #requests.get(image_url, stream=True).raw)
+image = Image.open(requests.get(image_url, stream=True).raw)
 inputs = processor(text=prompt, images=image, return_tensors='pt').to('cuda:0')
 
 # Generate response
