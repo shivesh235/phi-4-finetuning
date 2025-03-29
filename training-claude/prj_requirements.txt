@@ -1,0 +1,14 @@
+# Requirements for Medical Visual Question Answering Project
+requirements = [
+    "torch",
+    "transformers",
+    "datasets",
+    "pillow",
+    "scikit-learn",
+    "torchmetrics",
+    "accelerate",
+    "wandb"  # Optional, for experiment tracking
+]
+
+# You can install these with:
+# pip install torch transformers datasets pillow scikit-learn torchmetrics accelerate wandb
